@@ -3,7 +3,7 @@
   <Document name="aoc-2021-uvg.ZPM">
     <Module>
       <Name>aoc-2021-uvg</Name>
-      <Version>0.0.1</Version>
+      <Version>0.0.2</Version>
       <Description>Advent of code 2021 in COS classes</Description>
       <Keywords>contest,objectscript,adventofcode,aoc</Keywords>
       <Author>
