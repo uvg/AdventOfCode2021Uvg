@@ -1,7 +1,8 @@
 Class AOC2021.Base
 {
 
-Parameter Folder = "C:\devl\work\Cache\AOC\Files\2021\";
+// Parameter Folder = "C:\devl\work\Cache\AOC\Files\2021\";
+Parameter Folder = "/irisrun/repo/Files/";
 
 ClassMethod GetInput(fn) As %Stream
 {
