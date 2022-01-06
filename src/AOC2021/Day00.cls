@@ -1,4 +1,4 @@
-Class AOC2021.Day01 Extends AOC2021.Base
+Class AOC2021.Day00 Extends AOC2021.Base
 {
 // d ##class(AOC2021.Day00).Run()
 
