@@ -7,13 +7,7 @@ Parameter InputFile = "d07.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set Record=recordsArr(1)
 	for PC=1:1:$length(Record,",") if $increment(CrabsPos($piece(Record,",",PC)))
 	set POS1="",MinMove=99999999999999
@@ -36,13 +30,7 @@ ClassMethod Part1(verbose = 0) As %String [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set Record=recordsArr(1)
 	for PC=1:1:$length(Record,",") if $increment(CrabsPos($piece(Record,",",PC)))
 	set MinCrab=$order(CrabsPos("")),MaxCrab=$order(CrabsPos(""),-1)

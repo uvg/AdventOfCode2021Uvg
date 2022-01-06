@@ -7,13 +7,7 @@ Parameter InputFile = "d11.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	merge Grid=recordsArr
 	set Total=0
 	for I=1:1:100 {
@@ -77,13 +71,7 @@ ClassMethod ChangePos(Output Grid, Output Flashes, X, Y) [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	merge Grid=recordsArr
 	set Total=0,Size=$order(recordsArr(""),-1)*$length(recordsArr(1))
 	for I=1:1 {

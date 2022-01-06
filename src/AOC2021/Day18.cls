@@ -8,12 +8,7 @@ Parameter InputFile = "d18.txt";
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
 	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set Answer=recordsArr(1),Line=1
 	for {
 		set Line=$order(recordsArr(Line)) quit:Line=""
@@ -159,13 +154,7 @@ ClassMethod Magnitude(string) As %String [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set lastLine=$order(recordsArr(""),-1)
 	set maxMagnitude=0
 	for Line1=1:1:lastLine-1 {

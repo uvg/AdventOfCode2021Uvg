@@ -7,11 +7,11 @@ Parameter InputFile = "d01.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set count=0,line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set depth=stream.ReadLine()
+	do ..GetInputToArray(..#InputFile,.recordsArr)
+    set count=0,line=""
+	for  {
+		set line=$order(recordsArr(line)) quit:line=""
+		set depth=recordsArr(line)
 		if line>1,depth>prev set count=count+1
 		set prev=depth
 		if verbose write !,line,"=",count
@@ -21,17 +21,12 @@ ClassMethod Part1(verbose = 0) As %String [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set count=0,line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set depth=stream.ReadLine()
-		set records(line)=depth
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
+    set count=0
 	set line=2
 	for  {
-		set line=$order(records(line)) quit:line=""
-		set depths($increment(depths))=records(line)+records(line-1)+records(line-2)
+		set line=$order(recordsArr(line)) quit:line=""
+		set depths($increment(depths))=recordsArr(line)+recordsArr(line-1)+recordsArr(line-2)
 	}
 	set line=""
 	for  {

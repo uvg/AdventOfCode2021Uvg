@@ -7,13 +7,7 @@ Parameter InputFile = "d06.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	for LanterFish=-1:1:8 set LanterFishes(LanterFish)=0
 	for pc=1:1:$length(recordsArr(1),",") set LanterFishes($piece(recordsArr(1),",",pc))=LanterFishes($piece(recordsArr(1),",",pc))+1
 	for Day=1:1:80 {
@@ -39,13 +33,7 @@ ClassMethod Part1(verbose = 0) As %String [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	for LanterFish=-1:1:8 set LanterFishes(LanterFish)=0
 	for pc=1:1:$length(recordsArr(1),",") set LanterFishes($piece(recordsArr(1),",",pc))=LanterFishes($piece(recordsArr(1),",",pc))+1
 	for Day=1:1:256 {

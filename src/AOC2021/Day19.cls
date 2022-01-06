@@ -7,13 +7,7 @@ Parameter InputFile = "d19.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	do ..GetOrientationsArr(.OrientationsArr)
 	do ..GetScannersData(.recordsArr,.Scanners)
 	set minScanner=$order(Scanners(""))
@@ -150,13 +144,7 @@ ClassMethod GetOrientationsArr(ByRef OrientationsArr) [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	do ..GetOrientationsArr(.OrientationsArr)
 	do ..GetScannersData(.recordsArr,.Scanners)
 	set minScanner=$order(Scanners(""))
@@ -206,7 +194,7 @@ ClassMethod Part2(verbose = 0) As %String [ Private ]
 			}
 		}
 	}
-	if verbose zw offsets
+	if verbose zwrite offsets
 	set i="",maxDist=0
 	for  {
 		set i=$order(offsets(i)) quit:i=""

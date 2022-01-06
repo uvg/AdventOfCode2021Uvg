@@ -7,10 +7,11 @@ Parameter InputFile = "d05.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set Overlap=0
-	while 'stream.AtEnd {
-		set record=stream.ReadLine()
+	do ..GetInputToArray(..#InputFile,.recordsArr)
+    set Overlap=0,line=""
+	for  {
+		set line=$order(recordsArr(line)) quit:line=""
+		set record=recordsArr(line)
 		set fromX=+$piece(record,",",1),fromY=+$piece(record,",",2)
 		set toX=+$piece($piece(record," -> ",2),",",1),toY=+$piece($piece(record," -> ",2),",",2)
 		if verbose write !,record,";",fromX,";",fromY,";",toX,";",toY
@@ -31,10 +32,11 @@ ClassMethod Part1(verbose = 0) As %String [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set Overlap=0
-	while 'stream.AtEnd {
-		set record=stream.ReadLine()
+	do ..GetInputToArray(..#InputFile,.recordsArr)
+    set Overlap=0,line=""
+	for  {
+		set line=$order(recordsArr(line)) quit:line=""
+		set record=recordsArr(line)
 		set fromX=+$piece(record,",",1),fromY=+$piece(record,",",2)
 		set toX=+$piece($piece(record," -> ",2),",",1),toY=+$piece($piece(record," -> ",2),",",2)
 		if verbose write !,record,";",fromX,";",fromY,";",toX,";",toY

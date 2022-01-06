@@ -1,5 +1,6 @@
 Class AOC2021.Day00 Extends AOC2021.Base
 {
+
 // d ##class(AOC2021.Day00).Run()
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
@@ -15,3 +16,4 @@ ClassMethod Part2(verbose = 0) As %String [ Private ]
 }
 
 }
+

@@ -7,13 +7,7 @@ Parameter InputFile = "d23.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set Empty=$listbuild("E")
 	set startState=$listbuild(Empty,Empty)
 	for i=4:2:10 {
@@ -144,13 +138,7 @@ ClassMethod GetEnergy(Amphipod, RoomStart, DepthStart, RoomEnd, DepthEnd) As %In
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set Empty=$listbuild("E")
 	set startState=$listbuild(Empty,Empty)
 	set recordsArr(6)=recordsArr(4)

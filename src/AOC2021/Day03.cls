@@ -7,9 +7,11 @@ Parameter InputFile = "d03.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-	while 'stream.AtEnd {
-		set Record=$zstrip(stream.ReadLine(),"*C")
+	do ..GetInputToArray(..#InputFile,.recordsArr)
+	set Line=""
+	for  {
+		set Line=$order(recordsArr(Line)) quit:Line=""
+		set Record=recordsArr(Line)
 		set BitCount=$length(Record)
 		for bitPos=1:1:BitCount {
 			set bit=$extract(Record,bitPos)
@@ -45,15 +47,9 @@ ClassMethod BinToDec(Val = 0) As %Integer [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-	set Line=0
-	while 'stream.AtEnd {
-		set Record=$zstrip(stream.ReadLine(),"*C")
-		set Line=Line+1
-		set RecordsArr(Line)=Record
-	}
-	set Answer="",bitsCount=$length(RecordsArr(1))
-	merge OxyArr=RecordsArr,CO2Arr=RecordsArr
+	do ..GetInputToArray(..#InputFile,.recordsArr)
+	set Answer="",bitsCount=$length(recordsArr(1))
+	merge OxyArr=recordsArr,CO2Arr=recordsArr
 	for bitPos=1:1:bitsCount {
 		kill bits
 		set Line=""

@@ -1,15 +1,27 @@
 Class AOC2021.Base
 {
 
-// Parameter Folder = "C:\devl\work\Cache\AOC\Files\2021\";
-Parameter Folder = "/irisrun/repo/Files/";
+Parameter Folder = "C:\devl\work\Cache\AOC\Files\2021\";
+
+ClassMethod GetInputToArray(fn As %String, ByRef recordsArr) As %Status
+{
+    set stream = ..GetInput(fn)
+    kill recordsArr
+    set Line=0
+	while 'stream.AtEnd {
+		set Record=$zstrip(stream.ReadLine(),"*C")
+		set Line=Line+1
+		set recordsArr(Line)=Record
+	}
+	quit $$$OK
+}
 
 ClassMethod GetInput(fn) As %Stream
 {
-   
     set fn=..#Folder_fn
     set stream = ##Class(%Stream.FileCharacter).%New()
     do stream.LinkToFile(fn)
+    set stream.LineTerminator=$char(13,10)
     return stream
 }
 

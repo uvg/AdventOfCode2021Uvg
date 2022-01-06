@@ -7,13 +7,7 @@ Parameter InputFile = "d16.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private, PublicList = verbose ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set Data=..HexToBin(recordsArr(1))
 	if verbose write !,Data
 	set Answer=..GetPacketsTotalVersion(.Data)
@@ -91,13 +85,7 @@ ClassMethod HexToBin(Val) As %String [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private, PublicList = verbose ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set Data=..HexToBin(recordsArr(1))
 	if verbose write !,Data
 	set Answer=..GetPacketsTotalValue(.Data)
@@ -111,7 +99,7 @@ ClassMethod GetPacketsTotalValue(ByRef Data) As %Integer [ PublicList = verbose 
 	set Version=..BinToDec($extract(Data,1,3)),ID=..BinToDec($extract(Data,4,6))
 	set Data=$extract(Data,7,*)
 	quit:'$length(Data) 0
-	i verbose w !,"data=",Data,";",Version,";",ID
+	if verbose write !,"data=",Data,";",Version,";",ID
 	if ID=4 {
 		set value=""
 		for i=1:5:$length(Data) {

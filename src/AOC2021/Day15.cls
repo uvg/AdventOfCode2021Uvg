@@ -7,13 +7,7 @@ Parameter InputFile = "d15.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private, PublicList = verbose ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set LastY=$order(recordsArr(""),-1)
 	set LastX=$length(recordsArr(1))
 	if verbose write !,LastX,"x",LastY,! zwrite recordsArr
@@ -65,13 +59,7 @@ ClassMethod GetSimpleMinPath(ByRef Grid) [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private, PublicList = (MinPath, verbose) ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	merge OrigGrid=recordsArr,Grid=recordsArr
 	set MaxSize=$length(OrigGrid(1))*5
 	for i=1:1:8 {

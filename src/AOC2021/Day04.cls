@@ -7,13 +7,7 @@ Parameter InputFile = "d04.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=$zstrip(stream.ReadLine(),"*C")
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set DrawnNumbers=..GetData(.recordsArr,.Boards)
 	set Answer=""
 	for pos=1:1:$length(DrawnNumbers,",") {
@@ -53,7 +47,7 @@ ClassMethod GetData(ByRef RecordsArr, Output Boards) As %String [ Private ]
 		}
 		set BoardLine=$increment(Boards(Board)),BoardNumbers=""
 		for loc=1:3:$length(Record) {
-			set BoardNumbers=BoardNumbers_$lb($lb(+$zstrip($extract(Record,loc,loc+2),"<>W"),0))
+			set BoardNumbers=BoardNumbers_$listbuild($listbuild(+$zstrip($extract(Record,loc,loc+2),"<>W"),0))
 		}
 		set Boards(Board,BoardLine)=BoardNumbers
 	}
@@ -135,13 +129,7 @@ ClassMethod BoardSum(ByRef Boards, Board) As %Integer [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=$zstrip(stream.ReadLine(),"*C")
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set DrawnNumbers=..GetData(.recordsArr,.Boards)
 	set Answer=""
 	for pos=1:1:$length(DrawnNumbers,",") {

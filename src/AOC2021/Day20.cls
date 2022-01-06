@@ -7,13 +7,7 @@ Parameter InputFile = "d20.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set algo=recordsArr(1)
 	set Answer="",Line=2
 	for {
@@ -110,25 +104,19 @@ ClassMethod GetBin(ByRef Grid, px, py) As %String [ Private ]
 
 ClassMethod GridDisplay(ByRef Grid) [ Private ]
 {
-	w !!
+	write !!
 	//Grid(y)=data
 	set y=""
 	for  {
 		set y=$order(Grid(y)) quit:y=""
 		write !,Grid(y)
 	}
-	w !!
+	write !!
 }
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set algo=recordsArr(1)
 	set Answer="",Line=2
 	for {

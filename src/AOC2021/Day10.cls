@@ -7,13 +7,7 @@ Parameter InputFile = "d10.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set Answer="",Line="",Total=0
 	for {
 		set Line=$order(recordsArr(Line)) quit:Line=""
@@ -60,13 +54,7 @@ ClassMethod Part1(verbose = 0) As %String [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set Answer="",Line="",counter=0
 	for {
 		set Line=$order(recordsArr(Line)) quit:Line=""

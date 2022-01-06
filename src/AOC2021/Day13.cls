@@ -7,10 +7,11 @@ Parameter InputFile = "d13.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set Answer="",maxX=-1
-	while 'stream.AtEnd {
-		set Record=stream.ReadLine()
+	do ..GetInputToArray(..#InputFile,.recordsArr)
+    set Answer="",maxX=-1,line=""
+    for  {
+		set line=$order(recordsArr(line)) quit:line=""
+		set Record=recordsArr(line)
 		if Record["," {
 			set x=$piece(Record,",",1)
 			set grid($piece(Record,",",2),x)="#"
@@ -100,10 +101,11 @@ ClassMethod PrintGrid(ByRef grid) [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set maxX=-1
-	while 'stream.AtEnd {
-		set Record=stream.ReadLine()
+	do ..GetInputToArray(..#InputFile,.recordsArr)
+    set maxX=-1,line=""
+    for  {
+		set line=$order(recordsArr(line)) quit:line=""
+		set Record=recordsArr(line)
 		if Record["," {
 			set x=$piece(Record,",",1)
 			set grid($piece(Record,",",2),x)="#"
@@ -125,7 +127,7 @@ ClassMethod Part2(verbose = 0) As %String [ Private ]
 		set xy=$list(fold,1),pos=$list(fold,2)
 		if xy=1 do ..foldY(.grid,pos)
 		if xy=2 do ..foldX(.grid,pos)
-		i verbose write !,..Count(.grid)
+		if verbose write !,..Count(.grid)
 	}
 	do ..PrintGrid(.grid)
 	set Answer="^^^^^^^^^^^^^^^^^^^^^^^"

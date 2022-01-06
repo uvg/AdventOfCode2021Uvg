@@ -7,13 +7,7 @@ Parameter InputFile = "d21.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set playerPos(1)=$piece(recordsArr(1),": ",2)
 	set playerPos(2)=$piece(recordsArr(2),": ",2)
 	set players(1)=0,players(2)=0,player=1,Moves=0,die=0
@@ -35,13 +29,7 @@ ClassMethod Part1(verbose = 0) As %String [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set pos1=$piece(recordsArr(1),": ",2)
 	set pos2=$piece(recordsArr(2),": ",2)
 	kill states set ans=..Play(pos1,pos2,0,0)

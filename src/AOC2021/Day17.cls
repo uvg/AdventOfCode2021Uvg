@@ -7,13 +7,7 @@ Parameter InputFile = "d17.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set target=recordsArr(1)
 	set x1=+$piece(target,"x=",2),x2=+$piece(target,"..",2),y1=+$piece(target,"y=",2),y2=+$piece(target,"..",3)
 	if verbose write !,target
@@ -44,13 +38,7 @@ ClassMethod SetNewPos(ByRef x, ByRef y, ByRef currVelX, ByRef currVelY) [ Privat
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set target=recordsArr(1)
 	set x1=+$piece(target,"x=",2),x2=+$piece(target,"..",2),y1=+$piece(target,"y=",2),y2=+$piece(target,"..",3)
 	if verbose write !,target

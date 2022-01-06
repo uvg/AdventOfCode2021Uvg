@@ -7,9 +7,11 @@ Parameter InputFile = "d12.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-	while 'stream.AtEnd {
-		set record=stream.ReadLine()
+	do ..GetInputToArray(..#InputFile,.recordsArr)
+	set line=""
+	for  {
+		set line=$order(recordsArr(line)) quit:line=""
+		set record=recordsArr(line)
 		set loc1=$piece(record,"-",1),loc2=$piece(record,"-",2)
 		set FromTo(loc1,loc2)=""
 		set FromTo(loc2,loc1)=""
@@ -60,9 +62,11 @@ ClassMethod GetTotalPaths(ByRef FromTo, From, To, Output visited, Path, Output T
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-	while 'stream.AtEnd {
-		set record=stream.ReadLine()
+	do ..GetInputToArray(..#InputFile,.recordsArr)
+	set line=""
+	for  {
+		set line=$order(recordsArr(line)) quit:line=""
+		set record=recordsArr(line)
 		set loc1=$piece(record,"-",1),loc2=$piece(record,"-",2)
 		set FromTo(loc1,loc2)=""
 		set FromTo(loc2,loc1)=""

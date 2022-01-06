@@ -7,10 +7,11 @@ Parameter InputFile = "d14.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-	set Template=""
-	while 'stream.AtEnd {
-		set Record=stream.ReadLine()
+	do ..GetInputToArray(..#InputFile,.recordsArr)
+	set Template="",line=""
+	for  {
+		set line=$order(recordsArr(line)) quit:line=""
+		set Record=recordsArr(line)
 		continue:'$length(Record)
 		if '$length(Template) {
 			set Template=Record
@@ -46,10 +47,11 @@ ClassMethod Part1(verbose = 0) As %String [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-	set Template=""
-	while 'stream.AtEnd {
-		set Record=stream.ReadLine()
+	do ..GetInputToArray(..#InputFile,.recordsArr)
+	set Template="",line=""
+	for  {
+		set line=$order(recordsArr(line)) quit:line=""
+		set Record=recordsArr(line)
 		continue:'$length(Record)
 		if '$length(Template) {
 			set Template=Record

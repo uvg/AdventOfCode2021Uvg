@@ -7,10 +7,11 @@ Parameter InputFile = "d02.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set X=0,Y=0
-	while 'stream.AtEnd {
-		set Record=stream.ReadLine()
+	do ..GetInputToArray(..#InputFile,.recordsArr)
+    set X=0,Y=0,line=""
+	for  {
+		set line=$order(recordsArr(line)) quit:line=""
+		set Record=recordsArr(line)
 		set Dist=$piece(Record," ",2)
 		set Inst=$piece(Record," ",1)
 		if Inst="forward" set X=X+Dist
@@ -23,10 +24,11 @@ ClassMethod Part1(verbose = 0) As %String [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-   	set X=0,Y=0,Aim=0
-	while 'stream.AtEnd {
-		set Record=stream.ReadLine()
+	do ..GetInputToArray(..#InputFile,.recordsArr)
+   	set X=0,Y=0,Aim=0,line=""
+	for  {
+		set line=$order(recordsArr(line)) quit:line=""
+		set Record=recordsArr(line)
 		set Dist=$piece(Record," ",2)
 		set Inst=$piece(Record," ",1)
 		if Inst="forward" set X=X+Dist,Y=Aim*Dist+Y

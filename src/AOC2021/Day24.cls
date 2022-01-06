@@ -7,13 +7,7 @@ Parameter InputFile = "d24.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	if verbose zwrite recordsArr
 	set Answer=$list(..AnalayzeData(.recordsArr),1)
 
@@ -51,13 +45,7 @@ ClassMethod AnalayzeData(ByRef Instructions) As %String [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	if verbose zwrite recordsArr
 	set Answer=$list(..AnalayzeData(.recordsArr),2)
 	quit Answer

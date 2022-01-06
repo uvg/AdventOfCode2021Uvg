@@ -7,13 +7,7 @@ Parameter InputFile = "d25.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
+	do ..GetInputToArray(..#InputFile,.recordsArr)
 	merge Grid=recordsArr
 	set Answer=""
 	for i=1:1 {
@@ -89,13 +83,6 @@ ClassMethod GridDisplay(ByRef Grid) [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-    set line=0
-	while 'stream.AtEnd {
-		set line=line+1
-		set record=stream.ReadLine()
-		set recordsArr(line)=record
-	}
 	if verbose write !,"You made it to the last day"
 	set Answer="Finito la comedy"
 	quit Answer

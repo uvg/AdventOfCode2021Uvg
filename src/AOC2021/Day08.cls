@@ -7,10 +7,11 @@ Parameter InputFile = "d08.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-	set Counter=0
-	while 'stream.AtEnd {
-		set record=stream.ReadLine()
+	do ..GetInputToArray(..#InputFile,.recordsArr)
+	set Counter=0,line=""
+	for  {
+		set line=$order(recordsArr(line)) quit:line=""
+		set record=recordsArr(line)
 		set Data=$zstrip($piece(record,"|",2),"<>W")
 		for PC=1:1:$length(Data," ") {
 			set LEN=$length($piece(Data," ",PC))
@@ -27,10 +28,11 @@ ClassMethod Part1(verbose = 0) As %String [ Private ]
 
 ClassMethod Part2(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
-	set Total=0
-	while 'stream.AtEnd {
-		set Record=stream.ReadLine()
+	do ..GetInputToArray(..#InputFile,.recordsArr)
+	set Total=0,line=""
+	for  {
+		set line=$order(recordsArr(line)) quit:line=""
+		set Record=recordsArr(line)
 		kill Digits,Chars
 		set Data=$zstrip($piece(Record,"|",1),"<>W")
 		for PC=1:1:$length(Data," ") {
@@ -90,10 +92,10 @@ ClassMethod Part2(verbose = 0) As %String [ Private ]
 		for PC=1:1:$length(Data," ") {
 			set Letters=$piece(Data," ",PC)
 			set Len=$length(Letters)
-			s Digit=""
+			set Digit=""
 			for  {
 				set Digit=$order(arr(Len,Digit)) quit:Digit=""
-				if '$length($tr(Letters,arr(Len,Digit))) {
+				if '$length($translate(Letters,arr(Len,Digit))) {
 					set Number=Number_Digit
 					quit
 				}
