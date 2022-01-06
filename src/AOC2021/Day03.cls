@@ -9,8 +9,8 @@ ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
 	set stream=..GetInput(..#InputFile)
 	while 'stream.AtEnd {
-		set Record=stream.ReadLine()
-		s BitCount=$l(Record)
+		set Record=$zstrip(stream.ReadLine(),"*C")
+		set BitCount=$length(Record)
 		for bitPos=1:1:BitCount {
 			set bit=$extract(Record,bitPos)
 			if $increment(bits(bitPos,bit))
@@ -48,7 +48,7 @@ ClassMethod Part2(verbose = 0) As %String [ Private ]
 	set stream=..GetInput(..#InputFile)
 	set Line=0
 	while 'stream.AtEnd {
-		set Record=stream.ReadLine()
+		set Record=$zstrip(stream.ReadLine(),"*C")
 		set Line=Line+1
 		set RecordsArr(Line)=Record
 	}

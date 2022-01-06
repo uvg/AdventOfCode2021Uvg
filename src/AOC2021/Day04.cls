@@ -11,7 +11,7 @@ ClassMethod Part1(verbose = 0) As %String [ Private ]
     set line=0
 	while 'stream.AtEnd {
 		set line=line+1
-		set record=stream.ReadLine()
+		set record=$zstrip(stream.ReadLine(),"*C")
 		set recordsArr(line)=record
 	}
 	set DrawnNumbers=..GetData(.recordsArr,.Boards)
@@ -139,7 +139,7 @@ ClassMethod Part2(verbose = 0) As %String [ Private ]
     set line=0
 	while 'stream.AtEnd {
 		set line=line+1
-		set record=stream.ReadLine()
+		set record=$zstrip(stream.ReadLine(),"*C")
 		set recordsArr(line)=record
 	}
 	set DrawnNumbers=..GetData(.recordsArr,.Boards)
