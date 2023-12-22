@@ -7,7 +7,6 @@ Parameter InputFile = "d18.txt";
 
 ClassMethod Part1(verbose = 0) As %String [ Private ]
 {
-	set stream=..GetInput(..#InputFile)
 	do ..GetInputToArray(..#InputFile,.recordsArr)
 	set Answer=recordsArr(1),Line=1
 	for {
